@@ -1,0 +1,12 @@
+.manga{
+  border-radius: 16px;
+  width: 190px;
+  height: 220px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  row-gap: 11px;
+  padding: 0 10px 11px;
+}

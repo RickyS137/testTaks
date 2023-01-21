@@ -1,0 +1,48 @@
+.filter{
+  width: 400px;
+  height: 700px;
+  border-radius: 20px;
+  background-color: #FFF;
+  padding: 10px 15px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.genres{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.genresButton{
+  display: flex;
+  align-items: center;
+  column-gap: 17px;
+}
+.types{
+  padding-top: 43px;
+}
+.checkBoxes{
+  gap: 10px;
+}
+.startYear input::-webkit-outer-spin-button,
+.startYear input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+.endYear input::-webkit-outer-spin-button,
+.endYear input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+.inputs {
+  padding-top: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filterButtons{
+  padding: 10px 20px;
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+}
+.filterButton{
+  
+}

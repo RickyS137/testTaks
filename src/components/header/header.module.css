@@ -1,0 +1,21 @@
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.headerLogo img {
+  width: 104px;
+  height: 83px;
+}
+
+.headerAuthReg {
+  display: flex;
+  gap: 15px;
+}

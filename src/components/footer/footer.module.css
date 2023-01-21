@@ -1,0 +1,41 @@
+.footerLogo{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footerLogo img{
+  width: 104px;
+  height: 83px;
+}
+.footerInner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+.footerLink{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footerLinks{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 32px;
+}
+.footerUnderline{
+  border-bottom: 1px solid #BBBBBB;
+}
+.footerCom{
+  padding: 40px 0;
+}
+.comInner{
+  display: flex;
+  column-gap: 24px;
+  justify-content: center;
+}
+.comLink{
+  border-bottom: 2px solid #000;
+}
