@@ -13,13 +13,19 @@ export const getGenres = createAsyncThunk(
 
 const initialState = {
   genres: [],
+  selectedGenres: '',
   load: true,
 }
 
 const genresSlice = createSlice({
   name: 'genres',
   initialState,
-  reducers: {},
+  reducers: {
+    setGenres(state,aciton){
+      state.selectedGenres = aciton.payload
+      console.log(state.selectedGenres);
+    }
+  },
   extraReducers:(builder)=> {
     builder
     .addCase(getGenres.fulfilled, (state, action) => {
@@ -30,3 +36,4 @@ const genresSlice = createSlice({
 })
 
 export default genresSlice.reducer;
+export const {setGenres} = genresSlice.actions

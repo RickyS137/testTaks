@@ -15,39 +15,37 @@ import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { useEffect } from 'react';
 import { setEndYear, setStartYear, setTypes } from '../../redux/slices/mangasSlice';
+import { setGenres } from '../../redux/slices/genresSlice';
 
-const Filter = 
-  ({ 
+const SecondFilter = 
+({
   changeFilter,
+  confirmGenres,
+  selectedGenres,
+  genres,
   resetAll,
-  confirm,
   offset,
   changeOffset, 
   filterByYears, 
-  filterTypeByYear,
   startYear,
   endYear,
-  types,
   }) => {
   const dispatch = useDispatch()
   const [authAndReg, setAuthAndReg] = useState(['Сбросить', 'Применить']);
-  let auth = true;
-
-  const mangaTypes = ['Манга', 'Манхва', 'Западный комикс', 'Маньхуа'];
 
   const removeResetAll = () => {
     resetAll()
     dispatch(setTypes(''))
+    dispatch(setGenres(''))
   }
 
-  const checkType = (startYear,endYear) => {
-    types === ''
-    ? filterByYears(startYear,endYear)
-    : filterTypeByYear(startYear,endYear) 
+  const checkGenres = (startYear,endYear) => {
+    selectedGenres !== ''
+    && filterByYears(startYear,endYear)
   }
 
   useEffect(() => {
-    confirm(types)
+    confirmGenres(selectedGenres)
   },[offset]);
 
   return (
@@ -70,13 +68,13 @@ const Filter =
 
           className={style.checkBoxes}
         >
-        {mangaTypes.map((type, i) => (
+        {genres.map((genre) => (
             <FormControlLabel
-            key={i}
+            key={genre.id}
               onChange={({target}) => {
                 target.checked
-                  ? dispatch(setTypes(type))
-                  : dispatch(setTypes('') )
+                  ? dispatch(setGenres(genre.title))
+                  : dispatch(setGenres('') )
                   changeOffset(0)
               }}
               sx={{
@@ -86,8 +84,8 @@ const Filter =
               }}
               control={
                 <Checkbox
-                  key={i}
-                  checked={type === types}
+                  key={genre.id}
+                  checked={genre.title === selectedGenres}
                   sx={{
                     color: '#2FE09B',
                     '& svg': {
@@ -103,7 +101,7 @@ const Filter =
                   }}
                 />
               }
-              label={type}
+              label={genre.title}
             />
           ))}
         </RadioGroup>
@@ -197,8 +195,8 @@ const Filter =
             setAuthAndReg(['Сбросить', 'Применить']);
           }}
           onClick={()=> {
-            confirm(types)
-            checkType(startYear,endYear)
+            confirmGenres(selectedGenres)
+            checkGenres(startYear,endYear)
           }}>
           <Typography variant="span">{authAndReg[1]}</Typography>
         </Button>
@@ -206,9 +204,4 @@ const Filter =
     </Box>
   );
 };
-// '& .MuiOutlinedInput-root': {
-//   '& fieldset': {
-//     color: '#2FE09B'
-//   }
-// }
-export default Filter;
+export default SecondFilter;

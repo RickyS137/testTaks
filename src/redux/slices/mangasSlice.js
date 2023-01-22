@@ -13,9 +13,18 @@ export const getMangas = createAsyncThunk(
 
 export const getMangasByTypes = createAsyncThunk(
   'mangaByTypes/getMangasByTypes',
-  async (params,{dispatch}) => {
+  async (params) => {
     const response = await axios.get(URL,{ params: params });
-    dispatch(getMangasByType(response.data))
+    // dispatch(getMangasByType(response.data))
+    return response.data
+  }
+);
+
+export const getMangasByGenres = createAsyncThunk(
+  'mangaByGenres/getMangasByGenres',
+  async (params) => {
+    const response = await axios.get(URL, { params: params });
+    return response.data;
   }
 );
 
@@ -25,24 +34,58 @@ const initialState = {
     results: [],
   },
   mangasByType: [],
+  mangasByYears : [],
+  types: '',
   load: true,
+  startYear: 0,
+  endYear: 2022,
 };
 
 const mangasSlice = createSlice({
   name: 'mangas',
   initialState,
   reducers: {
-    getMangasByType(state, action){
+    setStartYear(state, action){
+      state.startYear = action.payload
+    },
+    setEndYear(state, action){
+      state.endYear = action.payload
+    },
+    setMangasByType(state, action){
       state.mangasByType = action.payload
-    }
+    },
+    setResults(state,action){
+      state.mangas.results = action.payload
+    },
+    setMangasByYear(state, action){
+      state.mangasByYears = action.payload
+    },
+    setTypes(state,action){
+      state.types = action.payload
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getMangas.fulfilled, (state, action) => {
+    builder
+    .addCase(getMangasByGenres.fulfilled, (state,action) => {
+      state.mangas = action.payload
+      state.load = false
+    })
+    .addCase(getMangas.fulfilled, (state, action) => {
       state.mangas = action.payload;
       state.load = false;
-    });
+    })
+    .addCase(getMangasByTypes.fulfilled, (state, action) => {
+      state.mangasByType = action.payload
+      state.load = false
+    })
   },
 });
 
 export default mangasSlice.reducer;
-export const {getMangasByType} = mangasSlice.actions
+export const {setMangasByType,
+    setStartYear,
+    setEndYear,
+    setResults,
+    setMangasByYear,
+    setTypes
+    } = mangasSlice.actions
