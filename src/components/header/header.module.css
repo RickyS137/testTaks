@@ -3,6 +3,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.headerInner a{
+  text-decoration: none;
+}
 
 .headerLogo {
   display: flex;
@@ -18,4 +21,10 @@
 .headerAuthReg {
   display: flex;
   gap: 15px;
+}
+.block{
+  display: block !important;
+}
+.headerInput{
+  position: relative;
 }

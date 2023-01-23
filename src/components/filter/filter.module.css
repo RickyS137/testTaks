@@ -6,16 +6,27 @@
   padding: 10px 15px 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .genres{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.genres:hover{
+  border-radius: 10px;
+  background: rgba(135, 135, 135, 0.2);
+}
 .genresButton{
   display: flex;
   align-items: center;
   column-gap: 17px;
+}
+.genresButton:hover{
+  background: none !important;
+}
+.genresButton span{
+  background: none !important;
 }
 .types{
   padding-top: 43px;
@@ -38,11 +49,32 @@
   justify-content: space-between;
 }
 .filterButtons{
-  padding: 10px 20px;
+  padding: 10px 0;
   display: flex;
   gap: 15px;
   margin-top: auto;
+  position: absolute;
+  bottom: 0;
 }
 .filterButton{
-  
+  width: 175px;
+}
+.back{
+  color: #878787;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px !important;
+  padding: 17px 0 15px;
+}
+.back:hover{
+  border-radius: 10px;
+  background: rgba(135, 135, 135, 0.2);
+}
+.genres2{
+  padding-top: 17px;
+}
+.genreCheckBoxes{
+  height: 500px;
+  overflow-y: scroll;
 }

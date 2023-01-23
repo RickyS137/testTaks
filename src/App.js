@@ -9,13 +9,18 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import MainPage from './pages/mainPage/MainPage';
+import { Route, Routes } from 'react-router-dom';
+import AboutPage from './pages/aboutPage/AboutPage';
 
 function App() {
   return (
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <Header />
-          <MainPage/>
+          <Routes>
+            <Route path='/' element={<MainPage/>}/>
+            <Route path='/:id' element={<AboutPage/>}/>
+          </Routes>
         <Footer />
       </ThemeProvider>
     </React.StrictMode>

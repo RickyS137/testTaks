@@ -21,9 +21,8 @@ const genresSlice = createSlice({
   name: 'genres',
   initialState,
   reducers: {
-    setGenres(state,aciton){
-      state.selectedGenres = aciton.payload
-      console.log(state.selectedGenres);
+    setGenres(state,action){
+      state.selectedGenres = action.payload
     }
   },
   extraReducers:(builder)=> {

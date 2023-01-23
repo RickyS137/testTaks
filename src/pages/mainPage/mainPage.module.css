@@ -5,13 +5,17 @@
   flex-wrap: wrap;
   row-gap: 20px;
 }
+.mainPageMangas a{
+  text-decoration: none;
+}
 .mainPageInner{
   display: flex;
   justify-content: space-between;
   padding-top: 32px;
 }
-.mainContainer{
-  /* width: 1240px !important; */
+.manga{
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .mainPage{
   padding-top: 87px;

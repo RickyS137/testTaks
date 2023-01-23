@@ -1,0 +1,21 @@
+.comment{
+  display: flex;
+  gap: 26px;
+  padding: 0 10px;
+}
+.userAvatar{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: black;
+}
+.userComment{
+  width: 1063px;
+  display: flex;
+  flex-wrap: wrap;
+  border-left: 2px solid #878787;
+}
+.span{
+  color: #878787 !important;
+  margin-bottom: 0 !important;
+}

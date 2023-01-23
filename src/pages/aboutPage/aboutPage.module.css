@@ -1,0 +1,79 @@
+.about{
+  padding-top: 87px;
+  
+}
+.about a{
+  text-decoration: none;
+}
+.mangaInfo{
+  padding-top: 32px;
+  display: flex;
+  column-gap: 41px;
+}
+.mangaInfos{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.info{
+  padding-top: 21px;
+}
+.span{
+  color: #878787;
+  font-size: 24px !important;
+  margin-left: 10px !important;
+}
+.genres{
+  width: 785px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mangaImage{
+  width: 328px;
+  height: 328px;
+  border-radius: 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hr{
+  margin: 32px 0;
+  border: 2px solid #CECECE;
+}
+.load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+.p{
+  color: #616161;
+  font-family: 'Montserrat' !important;
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  font-size: 24px !important;
+}
+.comments{
+  margin-top: 33px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 33px;
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+  padding: 28px 0 32px;
+}
+.backButton{
+  padding-top: 33px;
+  display: flex;
+  align-items: center;
+  column-gap: 14px;
+  color: #878787 !important;
+}
+.backButton p{
+  font-size: 24px;
+  font-family: 'Montserrat';
+  margin: 0;
+}

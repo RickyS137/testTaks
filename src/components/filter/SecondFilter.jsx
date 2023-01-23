@@ -4,31 +4,24 @@ import {
   Checkbox,
   FormControlLabel,
   RadioGroup,
-  TextField,
   Typography,
 } from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import React from 'react';
 import style from './filter.module.css';
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { useEffect } from 'react';
-import { setEndYear, setStartYear, setTypes } from '../../redux/slices/mangasSlice';
+import { setTypes } from '../../redux/slices/mangasSlice';
 import { setGenres } from '../../redux/slices/genresSlice';
 
 const SecondFilter = 
-({
+({changePage,
   changeFilter,
   confirmGenres,
   selectedGenres,
   genres,
   resetAll,
-  offset,
-  changeOffset, 
-  filterByYears, 
-  startYear,
-  endYear,
   }) => {
   const dispatch = useDispatch()
   const [authAndReg, setAuthAndReg] = useState(['Сбросить', 'Применить']);
@@ -39,43 +32,30 @@ const SecondFilter =
     dispatch(setGenres(''))
   }
 
-  const checkGenres = (startYear,endYear) => {
-    selectedGenres !== ''
-    && filterByYears(startYear,endYear)
-  }
-
   useEffect(() => {
     confirmGenres(selectedGenres)
-  },[offset]);
+  },[selectedGenres]);
 
   return (
     <Box className={style.filter}>
-      <Box onClick={changeFilter} className={style.genres}>
-        <Typography variant="p">Жанры</Typography>
-        <Button className={style.genresButton}>
-          <Typography
-            textTransform="lowercase"
-            variant="span"
-            sx={{ fontWeight: '400', color: '#878787', fontSize: '24px' }}>
-            все
-          </Typography>
-          <ArrowForwardIosIcon sx={{ color: '#878787' }} />
-        </Button>
+      <Box onClick={() => {
+          changeFilter()
+        }} 
+        className={style.back}>
+        <ArrowBackIosIcon/>
+        <Typography variant="p">Назад</Typography>
       </Box>
-      <Box className={style.types}>
-        <Typography variant="p">Тип</Typography>
-        <RadioGroup 
-
-          className={style.checkBoxes}
-        >
+      <Box className={style.genres2}>
+        <Typography variant="p">Жанры</Typography>
+        <RadioGroup sx={{flexWrap: 'nowrap', gap: '2px'}} className={style.genreCheckBoxes}>
         {genres.map((genre) => (
             <FormControlLabel
             key={genre.id}
               onChange={({target}) => {
                 target.checked
                   ? dispatch(setGenres(genre.title))
-                  : dispatch(setGenres('') )
-                  changeOffset(0)
+                  : dispatch(setGenres(''))
+                  
               }}
               sx={{
                 '& .MuiFormControlLabel-label': {
@@ -84,6 +64,7 @@ const SecondFilter =
               }}
               control={
                 <Checkbox
+                  onClick={changePage}
                   key={genre.id}
                   checked={genre.title === selectedGenres}
                   sx={{
@@ -95,8 +76,12 @@ const SecondFilter =
                     '&.Mui-checked': {
                       color: '#2FE09B',
                     },
+                    '&.MuiCheckbox-root':{
+                      padding: '0 10px'
+                    },
                     '&.MuiCheckbox-root:hover': {
                       background: 'none',
+                      padding: '0 10px'
                     },
                   }}
                 />
@@ -105,57 +90,6 @@ const SecondFilter =
             />
           ))}
         </RadioGroup>
-        <Box className={style.inputs}>
-          <TextField
-            value={startYear}
-            onChange={(e) => dispatch(setStartYear(e.target.value))}
-            className={style.startYear}
-            variant="outlined"
-            type="number"
-            color="secondary"
-            placeholder="От 0"
-            sx={{
-              width: 168,
-              height: 55,
-              '& input': {
-                paddingLeft: '15px',
-              },
-              '& .MuiInputBase-root': {
-                '& fieldset': {
-                  border: '2px solid #2FE09B',
-                },
-              },
-              '& .MuiInputBase-root:hover fieldset': {
-                borderColor: '#2FE09B',
-              },
-            }}></TextField>
-
-          <HorizontalRuleIcon />
-
-          <TextField
-            className={style.endYear}
-            onChange={(e) => dispatch(setEndYear(e.target.value))}
-            value={endYear > 0 && endYear}
-            variant="outlined"
-            type="number"
-            color="secondary"
-            placeholder="До 2022"
-            sx={{
-              width: 168,
-              height: 55,
-              '& input': {
-                paddingLeft: '15px',
-              },
-              '& .MuiInputBase-root': {
-                '& fieldset': {
-                  border: '2px solid #2FE09B',
-                },
-              },
-              '& .MuiInputBase-root:hover fieldset': {
-                borderColor: '#2FE09B',
-              },
-            }}></TextField>
-        </Box>
       </Box>
       <Box className={style.filterButtons}>
         <Button
@@ -174,7 +108,6 @@ const SecondFilter =
             setAuthAndReg(['Сбросить', 'Применить']);
           }}
           onClick={() => {
-            // !auth && setAuthAndReg(['Регистрация', 'Применить']);
             removeResetAll()
           }}>
           <Typography variant="span">{authAndReg[0]}</Typography>
@@ -196,7 +129,6 @@ const SecondFilter =
           }}
           onClick={()=> {
             confirmGenres(selectedGenres)
-            checkGenres(startYear,endYear)
           }}>
           <Typography variant="span">{authAndReg[1]}</Typography>
         </Button>

@@ -18,6 +18,7 @@ import { setEndYear, setStartYear, setTypes } from '../../redux/slices/mangasSli
 
 const Filter = 
   ({ 
+    changePageToTypes,
   changeFilter,
   resetAll,
   confirm,
@@ -31,7 +32,6 @@ const Filter =
   }) => {
   const dispatch = useDispatch()
   const [authAndReg, setAuthAndReg] = useState(['Сбросить', 'Применить']);
-  let auth = true;
 
   const mangaTypes = ['Манга', 'Манхва', 'Западный комикс', 'Маньхуа'];
 
@@ -48,7 +48,7 @@ const Filter =
 
   useEffect(() => {
     confirm(types)
-  },[offset]);
+  },[offset,types]);
 
   return (
     <Box className={style.filter}>
@@ -67,7 +67,6 @@ const Filter =
       <Box className={style.types}>
         <Typography variant="p">Тип</Typography>
         <RadioGroup 
-
           className={style.checkBoxes}
         >
         {mangaTypes.map((type, i) => (
@@ -86,6 +85,7 @@ const Filter =
               }}
               control={
                 <Checkbox
+                  onClick={changePageToTypes}
                   key={i}
                   checked={type === types}
                   sx={{
@@ -109,7 +109,7 @@ const Filter =
         </RadioGroup>
         <Box className={style.inputs}>
           <TextField
-            value={startYear}
+            value={startYear > 0 && startYear}
             onChange={(e) => dispatch(setStartYear(e.target.value))}
             className={style.startYear}
             variant="outlined"
@@ -176,7 +176,6 @@ const Filter =
             setAuthAndReg(['Сбросить', 'Применить']);
           }}
           onClick={() => {
-            // !auth && setAuthAndReg(['Регистрация', 'Применить']);
             removeResetAll()
           }}>
           <Typography variant="span">{authAndReg[0]}</Typography>
@@ -197,7 +196,6 @@ const Filter =
             setAuthAndReg(['Сбросить', 'Применить']);
           }}
           onClick={()=> {
-            confirm(types)
             checkType(startYear,endYear)
           }}>
           <Typography variant="span">{authAndReg[1]}</Typography>

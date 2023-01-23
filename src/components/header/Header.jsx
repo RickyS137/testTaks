@@ -11,39 +11,84 @@ import {
   InputAdornment,
   Button,
 } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchManga, setSearch } from '../../redux/slices/mangasSlice';
+import { useEffect } from 'react';
+import SearchModal from '../searchModal/SearchModal';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const searchResults = useSelector((state) => state.mangas.search);
+  const search = useSelector((state) => state.mangas.searchText);
+  const [modalSearch, setModalSearch] = useState(false);
+  console.log(searchResults);
+
+  const hide = () => {
+    setMedia(['3px', '1']);
+    setTimeout(() =>{setModalSearch(false)},1000)
+  };
+
+  function searchModalSet(state) {
+    if (state === true) {
+      return searchResults?.length > 0 && 
+      <SearchModal results={searchResults?.length > 0 && searchResults} className={style.block}/>
+    } else {
+      return false;
+    }
+  }
+
+  useEffect(() => {
+    dispatch(
+      searchManga({
+        search: search !== '' && search,
+      })
+    );
+  }, [search, dispatch]);
+
   const [media, setMedia] = useState(['3px', '1']);
   return (
     <AppBar sx={{ background: '#f3f3f3' }}>
-      <Container fixed sx={{'&.MuiContainer-root':{
-        padding: 0,
-        maxWidth: 1240
-      }}}>
+      <Container
+        fixed
+        sx={{
+          '&.MuiContainer-root': {
+            padding: 0,
+            maxWidth: 1240,
+          },
+        }}>
         <Box className={style.headerInner}>
-          <Box className={style.headerLogo}>
-            <Box>
-              <img src={logo} alt="logo" />
+          <NavLink to="/">
+            <Box className={style.headerLogo}>
+              <Box>
+                <img src={logo} alt="logo" />
+              </Box>
+              <Box>
+                <Typography variant="h4">MangoRead</Typography>
+                <Typography
+                  variant="span"
+                  sx={{ fontSize: '16px', color: '#878787' }}>
+                  Читай мангу с нами
+                </Typography>
+              </Box>
             </Box>
-            <Box>
-              <Typography variant="h4">MangoRead</Typography>
-              <Typography
-                variant="span"
-                sx={{ fontSize: '16px', color: '#878787' }}>
-                Читай мангу с нами
-              </Typography>
-            </Box>
-          </Box>
+          </NavLink>
           <Box className={style.headerInput}>
             <CssTextField
-              sx={{height: '56px', width: '342px'}}
+              sx={{ height: '56px', width: '342px' }}
               variant="outlined"
               placeholder="Placeholder"
+              onClick={() => {
+                setModalSearch(true);
+              }}
+              onChange={(e) => {
+                dispatch(setSearch(e.target.value));
+              }}
               onFocus={() => setMedia(['-16px', '0'])}
-              onBlur={() => setMedia(['3px', '1'])}
+              onBlur={() => hide()}
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start'>
+                  <InputAdornment position="start">
                     <img
                       src={searchLoop}
                       alt="loop"
@@ -59,6 +104,7 @@ const Header = () => {
                 ),
               }}
             />
+            {searchModalSet(modalSearch)}
           </Box>
           <Box className={style.headerAuthReg}>
             <Button
@@ -77,7 +123,7 @@ const Header = () => {
                 '&:active': {
                   background: '#740994',
                   boxShadow: 'inset 0px 0px 20px rgba(0, 0, 0, 0.25)',
-                }
+                },
               }}>
               <Typography variant="span">Войти</Typography>
             </Button>
@@ -94,7 +140,7 @@ const Header = () => {
                 '&:active': {
                   background: '#740994',
                   boxShadow: 'inset 0px 0px 20px rgba(0, 0, 0, 0.25)',
-                }
+                },
               }}>
               <Typography variant="span">Регистрация</Typography>
             </Button>

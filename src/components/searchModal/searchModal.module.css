@@ -1,0 +1,27 @@
+.results{
+  width: 350px;
+  max-height: 500px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: auto;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  position: absolute;
+}
+.results::-webkit-scrollbar{
+  display: none;
+}
+.card{
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+.cardImage{
+  width: 70px;
+  height: 70px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
