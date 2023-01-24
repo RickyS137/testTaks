@@ -1,0 +1,23 @@
+.comModal{
+  width: 100vw;
+  height: 100vh;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal{
+  width: 600px;
+  height: 480px;
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-between;
+  border-radius: 20px;
+}
+.buttons{
+  display: flex;
+  column-gap: 25px;
+}

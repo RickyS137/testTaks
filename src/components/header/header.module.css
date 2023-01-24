@@ -28,3 +28,19 @@
 .headerInput{
   position: relative;
 }
+.accountImage{
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+.profile{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.accountName{
+  color: #000 !important;
+  font-size: 24px;
+}

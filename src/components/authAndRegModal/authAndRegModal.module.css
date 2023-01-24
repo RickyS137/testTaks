@@ -1,0 +1,84 @@
+.close {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+}
+.modal{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalInner{
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 20px;
+}
+.register{
+  width: 600px;
+  height: 650px;
+  padding-top: 40px;
+}
+.choose{
+  display: flex;
+  column-gap: 30px;
+  border-bottom: 2px solid #878787;
+}
+.buttonReg{
+  padding: 15px 186px !important;
+}
+.buttonLog{
+  padding: 15px 186px !important;
+  width: 100%;
+}
+.regInputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+.logInputs{
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+.regInput{
+  width: 500px !important;
+}
+.regImg{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.img{
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+.addPhoto{
+  font-weight: 400;
+  font-size: 16px !important;
+  margin-top: 21px !important;
+  margin-bottom: 40px !important;
+  color: #000 !important;
+  background: none !important;
+}
+.Checkbox{
+  border-color: #AD02E0 !important;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+.loginInner{
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}

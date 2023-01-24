@@ -4,20 +4,24 @@ import {
   Container,
   Pagination,
   Typography,
+  Button
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Comment from '../../components/comment/Comment';
 import { getGenres } from '../../redux/slices/genresSlice';
-import { getComments, getManga } from '../../redux/slices/mangasSlice';
+import { getComments, getManga, postComm } from '../../redux/slices/mangasSlice';
 import style from './aboutPage.module.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { NavLink } from 'react-router-dom';
+import AddCommentModal from '../../components/addCommentModal/AddCommentModal';
 
 const AboutPage = () => {
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(1);
+  const [open, setOpen] = useState(false)
+  const [modalStyle, setModalStyle] = useState('none')
 
   const manga = useSelector((state) => state.mangas.manga);
   const mangaId = useSelector((state) => state.mangas.mangaId);
@@ -25,10 +29,24 @@ const AboutPage = () => {
   const genres = useSelector((state) => state.genres.genres);
   const load = useSelector((state) => state.mangas.load);
 
+  const postReq = (data) => {
+    dispatch(postComm(data))
+  }
+
   const substr = (str) => {
     const res = str.substring(3, str?.length - 4);
     return res;
   };
+
+  const openModal = () => {
+    setOpen(true)
+    setModalStyle('block')
+  }
+
+  const closeModal = () => {
+    setOpen(false)
+    setModalStyle('none')
+  }
 
   const changeOffset = (p) => {
     setOffset(p);
@@ -54,7 +72,6 @@ const AboutPage = () => {
           <NavLink to='/'><Box className={style.backButton}><ArrowBackIcon/><Typography paragraph>Назад</Typography></Box></NavLink>
           <Box className={style.mangaInfo}>
             <Box
-              onClick={() => console.log(comments)}
               className={style.mangaImage}
               sx={{ backgroundImage: `url(${manga?.image})` }}></Box>
             <Box className={style.mangaInfos}>
@@ -98,7 +115,11 @@ const AboutPage = () => {
           </Box>
           <hr className={style.hr} />
           <Box className={style.mangaComments}>
-            <Typography variant="h3">Топ рецензий</Typography>
+            <Box className={style.comAdd}>
+              <Typography variant="h3">Топ рецензий</Typography>
+              <Button onClick={openModal}><Typography variant='h3' sx={{color: '#AD02E0', fontSize: '18px'}}>Добавить комментарий</Typography></Button>
+              <AddCommentModal postReq={postReq} open={open} closeModal={closeModal} modalStyle={modalStyle}/>
+            </Box>
             <Box className={style.comments}>
               {comments.length > 0 ? (
                 comments

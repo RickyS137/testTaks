@@ -4,6 +4,20 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const URL = 'http://134.122.75.14:8666/api/v1/manga/';
 const topURL = 'http://134.122.75.14:8666/api/v1/top-manga/'
 
+export const postComm = createAsyncThunk(
+  'postComm',
+  async (data) => {
+    console.log(URL+`${data.id}/add-comment/`,{text: data.text});
+    const response = await axios.post(URL+`${data.id}/add-comment/`,{text: data.text},{
+      headers:{
+      Autharization: `Bearer ${JSON.parse(localStorage.getItem('tokenAccess'))}`}
+    })
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+    return console.log(response);
+  }
+);
+
 export const getMangas = createAsyncThunk(
   'mangas/getMangas',
   async (params) => {
@@ -90,6 +104,7 @@ const initialState = {
   load: true,
   startYear: 0,
   endYear: 0,
+  users: [],
 };
 
 const mangasSlice = createSlice({
@@ -132,9 +147,6 @@ const mangasSlice = createSlice({
     .addCase(searchManga.fulfilled, (state,action) => {
       state.search = action.payload
       state.load = false
-    })
-    .addCase(searchManga.pending, (state) => {
-      state.load = true
     })
     .addCase(getMangasByGenres.fulfilled, (state, action) => {
       state.mangaByGenres = action.payload

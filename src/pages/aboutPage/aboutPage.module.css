@@ -2,6 +2,17 @@
   padding-top: 87px;
   
 }
+.comAdd{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.none{
+  display: none;
+}
+.block{
+  display: block;
+}
 .about a{
   text-decoration: none;
 }
