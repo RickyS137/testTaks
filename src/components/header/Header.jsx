@@ -11,7 +11,7 @@ import {
   InputAdornment,
   Button,
 } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { json, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchManga, setSearch } from '../../redux/slices/mangasSlice';
 import { useEffect } from 'react';
@@ -30,7 +30,8 @@ const Header = () => {
   const [open, setOpen] = useState(false)
   const [log, setLog] = useState('Reg')
   const [modalStyle, setModalStyle] = useState(['none','static'])
-  let account = usersList?.find(user => user.username === dataLog.username)
+  let account = usersList?.find(user => user.username === dataLog.username) 
+  let refreshToken = JSON.parse(JSON.stringify(localStorage.getItem('tokenRefresh')))
   if(!account){
     account = JSON.parse(localStorage.getItem('account'))
   }
@@ -40,7 +41,7 @@ const Header = () => {
 
   const logOut = () => {
     dispatch(logOutAcc({
-      refresh: JSON.stringify(localStorage.getItem('tokenRefresh'))}))
+      refresh: refreshToken}))
     localStorage.removeItem('account')
     localStorage.removeItem('logined')
   }

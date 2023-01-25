@@ -7,14 +7,16 @@ const topURL = 'http://134.122.75.14:8666/api/v1/top-manga/'
 export const postComm = createAsyncThunk(
   'postComm',
   async (data) => {
-    console.log(URL+`${data.id}/add-comment/`,{text: data.text});
-    const response = await axios.post(URL+`${data.id}/add-comment/`,{text: data.text},{
+    const {id,text} = data
+    console.log(id,text);
+    console.log(URL+data?.id,+'/add-comment/'+{text: data?.text});
+    const response = await axios.post(`http://134.122.75.14:8666/api/v1/manga/${id}/add-comment/`,{text: text},{
       headers:{
-      Autharization: `Bearer ${JSON.parse(localStorage.getItem('tokenAccess'))}`}
+      Autharization: `Bearer ${JSON.parse(JSON.stringify(localStorage.getItem("tokenAccess")))}`},
     })
     .then(response => console.log(response))
     .catch(error => console.log(error))
-    return console.log(response);
+    return response
   }
 );
 

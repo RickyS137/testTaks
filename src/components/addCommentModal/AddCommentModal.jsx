@@ -6,7 +6,7 @@ import style from './addCommentModal.module.css'
 
 const AddCommentModal = ({open,closeModal,modalStyle,postReq}) => {
   const mangaId = useSelector(state => state.mangas.mangaId)
-  const [lText, setLText] = useState('')
+  const [lText, setLText] = useState("")
   let data = {
     id: mangaId,
     text: lText

@@ -4,6 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const usersURL = 'http://134.122.75.14:8666/api/auth/profile/';
 const regURL = 'http://134.122.75.14:8666/api/auth/signup/';
 const logURL = 'http://134.122.75.14:8666/api/auth/signin/';
+const logoutURL = `http://134.122.75.14:8666/api/auth/logout/`
 
 export const getUsers = createAsyncThunk('users/getUsers', async () => {
   const response = await axios.get(usersURL);
@@ -40,10 +41,10 @@ export const logOutAcc = createAsyncThunk(
   "logOutAcc",
   async (data,{dispatch}) => {
     try {
-      await axios.post(`http://134.122.75.14:8666/api/auth/logout/`, {params : data}, {
+      await axios.post(logoutURL, data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem("tokenAccess"))}`,
+          Authorization: `Bearer ${JSON.parse(JSON.stringify(localStorage.getItem("tokenAccess")))}`,
         },
       });
       dispatch(setLogOut());
