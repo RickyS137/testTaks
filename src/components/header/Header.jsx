@@ -11,7 +11,7 @@ import {
   InputAdornment,
   Button,
 } from '@mui/material';
-import { json, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchManga, setSearch } from '../../redux/slices/mangasSlice';
 import { useEffect } from 'react';

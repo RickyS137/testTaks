@@ -9,7 +9,9 @@ const AddCommentModal = ({open,closeModal,modalStyle,postReq}) => {
   const [lText, setLText] = useState("")
   let data = {
     id: mangaId,
-    text: lText
+    text: {
+      "text": lText
+    }
   }
 
   return (
