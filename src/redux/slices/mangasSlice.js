@@ -11,9 +11,8 @@ export const postComm = createAsyncThunk(
     console.log(id,text);
     console.log(URL+data?.id,+'/add-comment/'+{text: data?.text});
     const response = await axios.post(`http://134.122.75.14:8666/api/v1/manga/${id}/add-comment/`,text,{
-      mode:'no-cors',
       headers:{
-      Autharization: `Token ${JSON.parse(JSON.stringify(localStorage.getItem("tokenAccess")))}`},
+      'Authorization': `Bearer ${JSON.parse(JSON.stringify(localStorage.getItem("tokenAccess")))}`},
     })
     .then(response => console.log(response))
     .catch(error => console.log(error))

@@ -42,8 +42,10 @@ const Header = () => {
   const logOut = () => {
     dispatch(logOutAcc({
       refresh: refreshToken}))
+    localStorage.removeItem('tokenAccess')
+    localStorage.removeItem('tokenRefresh')
     localStorage.removeItem('account')
-    localStorage.removeItem('logined')
+    localStorage.setItem('logined',false)
   }
 
   const closeLogModal = () => {
