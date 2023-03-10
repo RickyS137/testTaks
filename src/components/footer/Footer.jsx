@@ -3,9 +3,6 @@ import logo from '../../media/headerMedia/logo.svg';
 import React from 'react';
 import style from './footer.module.css';
 import { Instagram, Twitter, Facebook } from '@mui/icons-material';
-// import twitter from '../../media/footerMedia/Twitter.svg';
-// import facebook from '../../media/footerMedia/Facebook.svg';
-// import instagram from '../../media/footerMedia/Instagram.svg';
 
 const Footer = () => {
   return (
@@ -31,7 +28,6 @@ const Footer = () => {
             </Box>
             <Box className={style.footerLinks}>
               <Box className={style.footerLink}>
-                {/* <img src={facebook} alt="face" /> */}
                 <Facebook />
                 <Typography
                   variant="span"
@@ -40,7 +36,6 @@ const Footer = () => {
                 </Typography>
               </Box>
               <Box className={style.footerLink}>
-                {/* <img src={instagram} alt="inst" /> */}
                 <Instagram />
                 <Typography
                   variant="span"
@@ -49,7 +44,6 @@ const Footer = () => {
                 </Typography>
               </Box>
               <Box className={style.footerLink}>
-                {/* <img src={twitter} alt="twit" /> */}
                 <Twitter />
                 <Typography
                   variant="span"

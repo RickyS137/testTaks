@@ -204,9 +204,4 @@ const Filter =
     </Box>
   );
 };
-// '& .MuiOutlinedInput-root': {
-//   '& fieldset': {
-//     color: '#2FE09B'
-//   }
-// }
 export default Filter;
